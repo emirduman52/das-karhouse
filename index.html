@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:#0A0A0A;color:#F8F8F8;font-family:'Work Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+input,textarea,button{font-family:inherit;}
+::selection{background:#B41F28;color:#F8F8F8;}
+::placeholder{color:#6a6a6a;}
+@keyframes kh-fade{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:none;}}
+@keyframes kh-rise{from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:none;}}
+</style>
+</helmet>
+
+<div style="background:#0A0A0A;color:#F8F8F8;overflow-x:hidden;">
+
+<!-- ================= HEADER ================= -->
+<header style="position:sticky;top:0;z-index:50;background:rgba(10,10,10,0.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(145,145,145,0.18);">
+  <div style="max-width:1200px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:relative;">
+    <!-- logo -->
+    <a href="#home" style="display:flex;align-items:center;gap:12px;">
+      <img src="./assets/logo-ab.png" alt="Das KarHouse Logo" style="width:42px;height:42px;flex:none;display:block;object-fit:contain;background:#F8F8F8;border-radius:6px;padding:4px;" />
+      <span style="font-family:'Oswald',sans-serif;font-weight:700;font-size:21px;letter-spacing:0.06em;text-transform:uppercase;">Das Kar<span style="color:#B41F28;">House</span></span>
+    </a>
+    <!-- desktop nav -->
+    <nav style="{{ desktopNavStyle }}">
+      <a href="#home" onClick="{{ closeNav }}" style="font-family:'Oswald',sans-serif;font-weight:500;font-size:14px;letter-spacing:0.1em;text-transform:uppercase;color:#cfcfcf;transition:color .2s ease;" style-hover="color:#F8F8F8;">Home</a>
+      <a href="#services" onClick="{{ closeNav }}" style="font-family:'Oswald',sans-serif;font-weight:500;font-size:14px;letter-spacing:0.1em;text-transform:uppercase;color:#cfcfcf;transition:color .2s ease;" style-hover="color:#F8F8F8;">Dienstleistungen</a>
+      <a href="#about" onClick="{{ closeNav }}" style="font-family:'Oswald',sans-serif;font-weight:500;font-size:14px;letter-spacing:0.1em;text-transform:uppercase;color:#cfcfcf;transition:color .2s ease;" style-hover="color:#F8F8F8;">Über Uns</a>
+      <a href="#gallery" onClick="{{ closeNav }}" style="font-family:'Oswald',sans-serif;font-weight:500;font-size:14px;letter-spacing:0.1em;text-transform:uppercase;color:#cfcfcf;transition:color .2s ease;" style-hover="color:#F8F8F8;">Fahrzeug-Galerie</a>
+      <a href="#contact" onClick="{{ closeNav }}" style="font-family:'Oswald',sans-serif;font-weight:500;font-size:14px;letter-spacing:0.1em;text-transform:uppercase;color:#cfcfcf;transition:color .2s ease;" style-hover="color:#F8F8F8;">Kontakt</a>
+      <a href="#gallery" onClick="{{ closeNav }}" style="background:#B41F28;color:#F8F8F8;padding:11px 22px;border-radius:2px;font-family:'Oswald',sans-serif;font-weight:600;font-size:14px;letter-spacing:0.1em;text-transform:uppercase;transition:background .2s ease,transform .2s ease;" style-hover="background:#d0252f;transform:translateY(-2px);">Jetzt entdecken</a>
+    </nav>
+    <!-- hamburger -->
+    <button onClick="{{ toggleNav }}" aria-label="Menü" style="{{ hamburgerStyle }}">
+      <span style="width:24px;height:2px;background:#F8F8F8;display:block;"></span>
+      <span style="width:24px;height:2px;background:#F8F8F8;display:block;"></span>
+      <span style="width:24px;height:2px;background:#F8F8F8;display:block;"></span>
+    </button>
+    <!-- mobile panel -->
+    <div style="{{ mobilePanelStyle }}">
+      <a href="#home" onClick="{{ closeNav }}" style="font-family:'Oswald',sans-serif;font-weight:500;font-size:16px;letter-spacing:0.08em;text-transform:uppercase;padding:11px 0;border-bottom:1px solid rgba(255,255,255,0.06);">Home</a>
+      <a href="#services" onClick="{{ closeNav }}" style="font-family:'Oswald',sans-serif;font-weight:500;font-size:16px;letter-spacing:0.08em;text-transform:uppercase;padding:11px 0;border-bottom:1px solid rgba(255,255,255,0.06);">Unsere Dienstleistungen</a>
+      <a href="#about" onClick="{{ closeNav }}" style="font-family:'Oswald',sans-serif;font-weight:500;font-size:16px;letter-spacing:0.08em;text-transform:uppercase;padding:11px 0;border-bottom:1px solid rgba(255,255,255,0.06);">Über Uns</a>
+      <a href="#gallery" onClick="{{ closeNav }}" style="font-family:'Oswald',sans-serif;font-weight:500;font-size:16px;letter-spacing:0.08em;text-transform:uppercase;padding:11px 0;border-bottom:1px solid rgba(255,255,255,0.06);">Fahrzeug-Galerie</a>
+      <a href="#contact" onClick="{{ closeNav }}" style="font-family:'Oswald',sans-serif;font-weight:500;font-size:16px;letter-spacing:0.08em;text-transform:uppercase;padding:11px 0;">Kontakt</a>
+      <a href="#gallery" onClick="{{ closeNav }}" style="margin-top:12px;background:#B41F28;color:#F8F8F8;padding:13px;text-align:center;border-radius:2px;font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;">Jetzt entdecken</a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section id="home" style="position:relative;min-height:90vh;display:flex;align-items:center;scroll-margin-top:72px;overflow:hidden;">
+  <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="kh-hero" src="./assets/hero.jpg" shape="rect" fit="cover" placeholder="Hero-Fahrzeugbild hier ablegen" hint-size="100%,100%" style="position:absolute;inset:0;width:100%;height:100%;display:block;"></x-import>
+  <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,10,10,0.94) 0%,rgba(10,10,10,0.82) 42%,rgba(10,10,10,0.42) 100%);"></div>
+  <div style="position:absolute;left:0;top:0;bottom:0;width:5px;background:#B41F28;"></div>
+  <div style="position:relative;max-width:1200px;margin:0 auto;padding:120px 24px;width:100%;">
+    <div style="max-width:760px;animation:kh-rise .9s cubic-bezier(.2,.7,.2,1) both;">
+      <div style="color:#B41F28;font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;font-size:13px;display:flex;align-items:center;gap:14px;">Seit 2013 in Ingolstadt<span style="width:46px;height:1px;background:#919191;display:inline-block;"></span></div>
+      <h1 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(40px,7vw,84px);line-height:1.02;letter-spacing:0.02em;text-transform:uppercase;margin:18px 0 0;">Ihr Partner für <span style="color:#B41F28;">Gebrauchtwagen</span> in Ingolstadt</h1>
+      <p style="color:#B0B0B0;font-size:clamp(16px,2vw,19px);line-height:1.65;margin:26px 0 0;max-width:560px;">Sorgfältig ausgewählte und geprüfte Fahrzeuge, faire Preise und persönliche Beratung – für ein unschlagbares Kauferlebnis.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:38px;">
+        <a href="#gallery" style="background:#B41F28;color:#F8F8F8;padding:16px 34px;border-radius:2px;font-family:'Oswald',sans-serif;font-weight:600;font-size:16px;letter-spacing:0.1em;text-transform:uppercase;transition:background .2s ease,transform .2s ease;" style-hover="background:#d0252f;transform:translateY(-3px);">Fahrzeuge ansehen</a>
+        <a href="#contact" style="border:1.5px solid rgba(248,248,248,0.45);color:#F8F8F8;padding:16px 34px;border-radius:2px;font-family:'Oswald',sans-serif;font-weight:600;font-size:16px;letter-spacing:0.1em;text-transform:uppercase;transition:border-color .2s ease,color .2s ease;" style-hover="border-color:#B41F28;color:#B41F28;">Kontakt</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WELCOME / INTRO ================= -->
+<section style="border-top:1px solid rgba(145,145,145,0.16);border-bottom:1px solid rgba(145,145,145,0.16);background:#0d0d0d;">
+  <div data-reveal style="max-width:1000px;margin:0 auto;padding:clamp(56px,8vw,96px) 24px;text-align:center;">
+    <div style="color:#B41F28;font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;font-size:13px;">Willkommen bei Das KarHouse</div>
+    <p style="font-family:'Oswald',sans-serif;font-weight:300;font-size:clamp(22px,3.4vw,34px);line-height:1.4;letter-spacing:0.01em;margin:22px 0 0;text-wrap:pretty;">Bei uns finden Sie eine sorgfältig ausgewählte Auswahl <span style="color:#B41F28;font-weight:500;">geprüfter Gebrauchtwagen</span> in Top-Qualität – kombiniert mit ehrlicher Beratung und einem unschlagbaren Kauferlebnis.</p>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section id="services" style="scroll-margin-top:72px;">
+  <div style="max-width:1200px;margin:0 auto;padding:clamp(64px,9vw,120px) 24px;">
+    <div data-reveal style="max-width:640px;">
+      <div style="color:#B41F28;font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;font-size:13px;">Unsere Dienstleistungen</div>
+      <h2 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(30px,4.5vw,52px);letter-spacing:0.03em;text-transform:uppercase;line-height:1.05;margin:14px 0 0;">Alles rund ums Auto</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:48px;">
+      <!-- card 1 -->
+      <div data-reveal style="background:#141414;border:1px solid rgba(145,145,145,0.16);border-radius:3px;overflow:hidden;transition:transform .3s ease,border-color .3s ease;" style-hover="transform:translateY(-6px);border-color:rgba(180,31,40,0.6);">
+        <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="kh-svc-1" src="./assets/verkauf.jpg" shape="rect" fit="cover" placeholder="Bild: Fahrzeugverkauf" hint-size="100%,210px" style="width:100%;height:210px;display:block;"></x-import>
+        <div style="padding:28px;">
+          <div style="width:40px;height:3px;background:#B41F28;"></div>
+          <h3 style="font-family:'Oswald',sans-serif;font-weight:600;font-size:23px;letter-spacing:0.04em;text-transform:uppercase;margin:18px 0 0;">Fahrzeugverkauf</h3>
+          <p style="color:#B0B0B0;font-size:15px;line-height:1.7;margin:12px 0 0;">Große Auswahl geprüfter Gebrauchtwagen, ehrliche Beratung und unverbindliche Probefahrten – damit Sie genau das richtige Fahrzeug finden.</p>
+          <a href="#gallery" style="display:inline-flex;align-items:center;gap:8px;color:#B41F28;font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;font-size:14px;margin-top:20px;transition:gap .2s ease;" style-hover="gap:14px;">Mehr Info →</a>
+        </div>
+      </div>
+      <!-- card 2 -->
+      <div data-reveal style="background:#141414;border:1px solid rgba(145,145,145,0.16);border-radius:3px;overflow:hidden;transition:transform .3s ease,border-color .3s ease;" style-hover="transform:translateY(-6px);border-color:rgba(180,31,40,0.6);">
+        <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="kh-svc-2" src="./assets/werkstatt.jpg" shape="rect" fit="cover" placeholder="Bild: Wartung & Reparatur" hint-size="100%,210px" style="width:100%;height:210px;display:block;"></x-import>
+        <div style="padding:28px;">
+          <div style="width:40px;height:3px;background:#B41F28;"></div>
+          <h3 style="font-family:'Oswald',sans-serif;font-weight:600;font-size:23px;letter-spacing:0.04em;text-transform:uppercase;margin:18px 0 0;">Wartung &amp; Reparatur</h3>
+          <p style="color:#B0B0B0;font-size:15px;line-height:1.7;margin:12px 0 0;">Zuverlässiger Service für alle Marken, transparente Preise und fachgerechte Arbeit – damit Ihr Fahrzeug sicher und zuverlässig bleibt.</p>
+          <a href="#contact" style="display:inline-flex;align-items:center;gap:8px;color:#B41F28;font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;font-size:14px;margin-top:20px;transition:gap .2s ease;" style-hover="gap:14px;">Mehr Info →</a>
+        </div>
+      </div>
+      <!-- card 3 -->
+      <div data-reveal style="background:#141414;border:1px solid rgba(145,145,145,0.16);border-radius:3px;overflow:hidden;transition:transform .3s ease,border-color .3s ease;" style-hover="transform:translateY(-6px);border-color:rgba(180,31,40,0.6);">
+        <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="kh-svc-3" src="./assets/finanz.jpg" shape="rect" fit="cover" placeholder="Bild: Finanzierung" hint-size="100%,210px" style="width:100%;height:210px;display:block;"></x-import>
+        <div style="padding:28px;">
+          <div style="width:40px;height:3px;background:#B41F28;"></div>
+          <h3 style="font-family:'Oswald',sans-serif;font-weight:600;font-size:23px;letter-spacing:0.04em;text-transform:uppercase;margin:18px 0 0;">Finanzierung</h3>
+          <p style="color:#B0B0B0;font-size:15px;line-height:1.7;margin:12px 0 0;">Individuelle Finanzierungslösungen, abgestimmt auf Ihr Budget. Unser erfahrenes Finanzteam begleitet Sie von der Anfrage bis zum Abschluss.</p>
+          <a href="#contact" style="display:inline-flex;align-items:center;gap:8px;color:#B41F28;font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;font-size:14px;margin-top:20px;transition:gap .2s ease;" style-hover="gap:14px;">Mehr Info →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALLERY TEASER ================= -->
+<section id="gallery" style="background:#0d0d0d;border-top:1px solid rgba(145,145,145,0.16);scroll-margin-top:72px;">
+  <div style="max-width:1200px;margin:0 auto;padding:clamp(64px,9vw,120px) 24px;">
+    <div data-reveal style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px;">
+      <div style="max-width:640px;">
+        <div style="color:#B41F28;font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;font-size:13px;">Fahrzeug-Galerie</div>
+        <h2 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(30px,4.5vw,52px);letter-spacing:0.03em;text-transform:uppercase;line-height:1.05;margin:14px 0 0;">Aktuelle Fahrzeuge</h2>
+      </div>
+      <a href="#contact" style="border:1.5px solid rgba(248,248,248,0.45);color:#F8F8F8;padding:14px 28px;border-radius:2px;font-family:'Oswald',sans-serif;font-weight:600;font-size:14px;letter-spacing:0.1em;text-transform:uppercase;transition:border-color .2s ease,color .2s ease;white-space:nowrap;" style-hover="border-color:#B41F28;color:#B41F28;">Probefahrt anfragen</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;margin-top:44px;">
+      <!-- car cards (placeholder data) -->
+      <div data-reveal style="background:#141414;border:1px solid rgba(145,145,145,0.16);border-radius:3px;overflow:hidden;transition:transform .3s ease,border-color .3s ease;" style-hover="transform:translateY(-6px);border-color:rgba(180,31,40,0.6);">
+        <div style="position:relative;">
+          <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="kh-car-1" shape="rect" fit="cover" placeholder="Fahrzeugfoto" hint-size="100%,200px" style="width:100%;height:200px;display:block;"></x-import>
+          <span style="position:absolute;top:12px;left:12px;background:rgba(10,10,10,0.78);color:#919191;font-family:monospace;font-size:10px;letter-spacing:0.12em;padding:4px 8px;border-radius:2px;">PLATZHALTER</span>
+        </div>
+        <div style="padding:22px;">
+          <div style="color:#919191;font-family:'Oswald',sans-serif;font-weight:500;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;">Limousine</div>
+          <h3 style="font-family:'Oswald',sans-serif;font-weight:600;font-size:20px;letter-spacing:0.03em;text-transform:uppercase;margin:6px 0 0;">Modellbezeichnung</h3>
+          <div style="color:#7d7d7d;font-size:13px;margin-top:8px;font-family:monospace;">Baujahr ••••  ·  ••• km  ·  ••• PS</div>
+          <div style="display:flex;align-items:baseline;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid rgba(145,145,145,0.16);"><span style="color:#919191;font-size:13px;">ab</span><span style="font-family:'Oswald',sans-serif;font-weight:600;font-size:24px;color:#F8F8F8;">00.000 €</span></div>
+        </div>
+      </div>
+      <div data-reveal style="background:#141414;border:1px solid rgba(145,145,145,0.16);border-radius:3px;overflow:hidden;transition:transform .3s ease,border-color .3s ease;" style-hover="transform:translateY(-6px);border-color:rgba(180,31,40,0.6);">
+        <div style="position:relative;">
+          <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="kh-car-2" shape="rect" fit="cover" placeholder="Fahrzeugfoto" hint-size="100%,200px" style="width:100%;height:200px;display:block;"></x-import>
+          <span style="position:absolute;top:12px;left:12px;background:rgba(10,10,10,0.78);color:#919191;font-family:monospace;font-size:10px;letter-spacing:0.12em;padding:4px 8px;border-radius:2px;">PLATZHALTER</span>
+        </div>
+        <div style="padding:22px;">
+          <div style="color:#919191;font-family:'Oswald',sans-serif;font-weight:500;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;">SUV / Geländewagen</div>
+          <h3 style="font-family:'Oswald',sans-serif;font-weight:600;font-size:20px;letter-spacing:0.03em;text-transform:uppercase;margin:6px 0 0;">Modellbezeichnung</h3>
+          <div style="color:#7d7d7d;font-size:13px;margin-top:8px;font-family:monospace;">Baujahr ••••  ·  ••• km  ·  ••• PS</div>
+          <div style="display:flex;align-items:baseline;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid rgba(145,145,145,0.16);"><span style="color:#919191;font-size:13px;">ab</span><span style="font-family:'Oswald',sans-serif;font-weight:600;font-size:24px;color:#F8F8F8;">00.000 €</span></div>
+        </div>
+      </div>
+      <div data-reveal style="background:#141414;border:1px solid rgba(145,145,145,0.16);border-radius:3px;overflow:hidden;transition:transform .3s ease,border-color .3s ease;" style-hover="transform:translateY(-6px);border-color:rgba(180,31,40,0.6);">
+        <div style="position:relative;">
+          <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="kh-car-3" shape="rect" fit="cover" placeholder="Fahrzeugfoto" hint-size="100%,200px" style="width:100%;height:200px;display:block;"></x-import>
+          <span style="position:absolute;top:12px;left:12px;background:rgba(10,10,10,0.78);color:#919191;font-family:monospace;font-size:10px;letter-spacing:0.12em;padding:4px 8px;border-radius:2px;">PLATZHALTER</span>
+        </div>
+        <div style="padding:22px;">
+          <div style="color:#919191;font-family:'Oswald',sans-serif;font-weight:500;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;">Kombi</div>
+          <h3 style="font-family:'Oswald',sans-serif;font-weight:600;font-size:20px;letter-spacing:0.03em;text-transform:uppercase;margin:6px 0 0;">Modellbezeichnung</h3>
+          <div style="color:#7d7d7d;font-size:13px;margin-top:8px;font-family:monospace;">Baujahr ••••  ·  ••• km  ·  ••• PS</div>
+          <div style="display:flex;align-items:baseline;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid rgba(145,145,145,0.16);"><span style="color:#919191;font-size:13px;">ab</span><span style="font-family:'Oswald',sans-serif;font-weight:600;font-size:24px;color:#F8F8F8;">00.000 €</span></div>
+        </div>
+      </div>
+      <div data-reveal style="background:#141414;border:1px solid rgba(145,145,145,0.16);border-radius:3px;overflow:hidden;transition:transform .3s ease,border-color .3s ease;" style-hover="transform:translateY(-6px);border-color:rgba(180,31,40,0.6);">
+        <div style="position:relative;">
+          <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="kh-car-4" shape="rect" fit="cover" placeholder="Fahrzeugfoto" hint-size="100%,200px" style="width:100%;height:200px;display:block;"></x-import>
+          <span style="position:absolute;top:12px;left:12px;background:rgba(10,10,10,0.78);color:#919191;font-family:monospace;font-size:10px;letter-spacing:0.12em;padding:4px 8px;border-radius:2px;">PLATZHALTER</span>
+        </div>
+        <div style="padding:22px;">
+          <div style="color:#919191;font-family:'Oswald',sans-serif;font-weight:500;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;">Kompaktklasse</div>
+          <h3 style="font-family:'Oswald',sans-serif;font-weight:600;font-size:20px;letter-spacing:0.03em;text-transform:uppercase;margin:6px 0 0;">Modellbezeichnung</h3>
+          <div style="color:#7d7d7d;font-size:13px;margin-top:8px;font-family:monospace;">Baujahr ••••  ·  ••• km  ·  ••• PS</div>
+          <div style="display:flex;align-items:baseline;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid rgba(145,145,145,0.16);"><span style="color:#919191;font-size:13px;">ab</span><span style="font-family:'Oswald',sans-serif;font-weight:600;font-size:24px;color:#F8F8F8;">00.000 €</span></div>
+        </div>
+      </div>
+      <div data-reveal style="background:#141414;border:1px solid rgba(145,145,145,0.16);border-radius:3px;overflow:hidden;transition:transform .3s ease,border-color .3s ease;" style-hover="transform:translateY(-6px);border-color:rgba(180,31,40,0.6);">
+        <div style="position:relative;">
+          <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="kh-car-5" shape="rect" fit="cover" placeholder="Fahrzeugfoto" hint-size="100%,200px" style="width:100%;height:200px;display:block;"></x-import>
+          <span style="position:absolute;top:12px;left:12px;background:rgba(10,10,10,0.78);color:#919191;font-family:monospace;font-size:10px;letter-spacing:0.12em;padding:4px 8px;border-radius:2px;">PLATZHALTER</span>
+        </div>
+        <div style="padding:22px;">
+          <div style="color:#919191;font-family:'Oswald',sans-serif;font-weight:500;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;">Sportwagen</div>
+          <h3 style="font-family:'Oswald',sans-serif;font-weight:600;font-size:20px;letter-spacing:0.03em;text-transform:uppercase;margin:6px 0 0;">Modellbezeichnung</h3>
+          <div style="color:#7d7d7d;font-size:13px;margin-top:8px;font-family:monospace;">Baujahr ••••  ·  ••• km  ·  ••• PS</div>
+          <div style="display:flex;align-items:baseline;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid rgba(145,145,145,0.16);"><span style="color:#919191;font-size:13px;">ab</span><span style="font-family:'Oswald',sans-serif;font-weight:600;font-size:24px;color:#F8F8F8;">00.000 €</span></div>
+        </div>
+      </div>
+      <div data-reveal style="background:#141414;border:1px solid rgba(145,145,145,0.16);border-radius:3px;overflow:hidden;transition:transform .3s ease,border-color .3s ease;" style-hover="transform:translateY(-6px);border-color:rgba(180,31,40,0.6);">
+        <div style="position:relative;">
+          <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="kh-car-6" shape="rect" fit="cover" placeholder="Fahrzeugfoto" hint-size="100%,200px" style="width:100%;height:200px;display:block;"></x-import>
+          <span style="position:absolute;top:12px;left:12px;background:rgba(10,10,10,0.78);color:#919191;font-family:monospace;font-size:10px;letter-spacing:0.12em;padding:4px 8px;border-radius:2px;">PLATZHALTER</span>
+        </div>
+        <div style="padding:22px;">
+          <div style="color:#919191;font-family:'Oswald',sans-serif;font-weight:500;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;">Elektro / Hybrid</div>
+          <h3 style="font-family:'Oswald',sans-serif;font-weight:600;font-size:20px;letter-spacing:0.03em;text-transform:uppercase;margin:6px 0 0;">Modellbezeichnung</h3>
+          <div style="color:#7d7d7d;font-size:13px;margin-top:8px;font-family:monospace;">Baujahr ••••  ·  ••• km  ·  ••• PS</div>
+          <div style="display:flex;align-items:baseline;gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid rgba(145,145,145,0.16);"><span style="color:#919191;font-size:13px;">ab</span><span style="font-family:'Oswald',sans-serif;font-weight:600;font-size:24px;color:#F8F8F8;">00.000 €</span></div>
+        </div>
+      </div>
+    </div>
+    <p style="color:#6a6a6a;font-size:13px;font-family:monospace;margin-top:24px;">* Fahrzeugbilder, Modelle und Preise sind Platzhalter und werden durch den aktuellen Bestand ersetzt.</p>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section style="scroll-margin-top:72px;">
+  <div style="max-width:860px;margin:0 auto;padding:clamp(64px,9vw,120px) 24px;">
+    <div data-reveal style="text-align:center;">
+      <div style="color:#B41F28;font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;font-size:13px;">Häufige Fragen</div>
+      <h2 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(30px,4.5vw,52px);letter-spacing:0.03em;text-transform:uppercase;line-height:1.05;margin:14px 0 0;">Gut zu wissen</h2>
+    </div>
+    <div data-reveal style="margin-top:44px;border-top:1px solid rgba(145,145,145,0.18);">
+      <sc-for list="{{ faqs }}" as="faq" hint-placeholder-count="3">
+        <div style="border-bottom:1px solid rgba(145,145,145,0.18);">
+          <button onClick="{{ faq.onClick }}" style="width:100%;background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px 0;text-align:left;color:#F8F8F8;">
+            <span style="font-family:'Oswald',sans-serif;font-weight:500;font-size:clamp(17px,2.4vw,22px);letter-spacing:0.02em;text-transform:uppercase;">{{ faq.q }}</span>
+            <span style="{{ faq.iconStyle }}">+</span>
+          </button>
+          <div style="{{ faq.answerStyle }}">
+            <p style="color:#B0B0B0;font-size:16px;line-height:1.7;margin:0;max-width:680px;">{{ faq.a }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about" style="background:#0d0d0d;border-top:1px solid rgba(145,145,145,0.16);border-bottom:1px solid rgba(145,145,145,0.16);scroll-margin-top:72px;">
+  <div style="max-width:1200px;margin:0 auto;padding:clamp(64px,9vw,120px) 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:56px;align-items:center;">
+    <div data-reveal>
+      <div style="color:#B41F28;font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;font-size:13px;">Über Uns</div>
+      <h2 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(30px,4.5vw,52px);letter-spacing:0.03em;text-transform:uppercase;line-height:1.05;margin:14px 0 0;">Ihr vertrauens­voller Partner seit 2013</h2>
+      <p style="color:#B0B0B0;font-size:17px;line-height:1.75;margin:24px 0 0;">Seit 2013 steht Das KarHouse in Ingolstadt für Qualität, ehrlichen Service und höchste Kundenzufriedenheit. Unser erfahrenes Team begleitet Sie persönlich – von der Auswahl über die Probefahrt bis zur Finanzierung.</p>
+      <p style="color:#B0B0B0;font-size:17px;line-height:1.75;margin:18px 0 0;">Jedes Fahrzeug wird sorgfältig geprüft, damit Sie sich auf das Wesentliche konzentrieren können: ein entspanntes, stressfreies Autokauf-Erlebnis.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:40px;margin-top:36px;">
+        <div><div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:42px;color:#B41F28;line-height:1;">2013</div><div style="color:#919191;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;margin-top:8px;font-family:'Oswald',sans-serif;">Gegründet</div></div>
+        <div><div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:42px;color:#F8F8F8;line-height:1;">100%</div><div style="color:#919191;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;margin-top:8px;font-family:'Oswald',sans-serif;">Geprüfte Fahrzeuge</div></div>
+        <div><div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:42px;color:#F8F8F8;line-height:1;">Alle</div><div style="color:#919191;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;margin-top:8px;font-family:'Oswald',sans-serif;">Marken &amp; Modelle</div></div>
+      </div>
+    </div>
+    <div data-reveal style="position:relative;">
+      <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="kh-about" src="./assets/showroom.jpg" shape="rounded" radius="3" fit="cover" placeholder="Team- oder Showroom-Foto" hint-size="100%,420px" style="width:100%;height:420px;display:block;"></x-import>
+      <div style="position:absolute;left:-1px;bottom:-1px;width:90px;height:90px;border-left:4px solid #B41F28;border-bottom:4px solid #B41F28;"></div>
+      <div style="position:absolute;right:-1px;top:-1px;width:90px;height:90px;border-right:4px solid #919191;border-top:4px solid #919191;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" style="scroll-margin-top:72px;">
+  <div style="max-width:1200px;margin:0 auto;padding:clamp(64px,9vw,120px) 24px;">
+    <div data-reveal style="max-width:640px;">
+      <div style="color:#B41F28;font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;font-size:13px;">Kontakt</div>
+      <h2 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(30px,4.5vw,52px);letter-spacing:0.03em;text-transform:uppercase;line-height:1.05;margin:14px 0 0;">Probefahrt anfragen</h2>
+      <p style="color:#B0B0B0;font-size:17px;line-height:1.7;margin:16px 0 0;">Sie haben Fragen oder möchten ein Fahrzeug Probe fahren? Schreiben Sie uns – wir melden uns zeitnah bei Ihnen.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:40px;margin-top:48px;align-items:start;">
+      <!-- form -->
+      <form data-reveal onSubmit="{{ submit }}" style="background:#141414;border:1px solid rgba(145,145,145,0.16);border-radius:3px;padding:clamp(24px,4vw,40px);">
+        <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+          <div style="background:rgba(180,31,40,0.12);border:1px solid rgba(180,31,40,0.5);border-radius:2px;padding:14px 16px;margin-bottom:22px;color:#F8F8F8;font-size:15px;">Vielen Dank! Ihre Nachricht wurde gesendet. Wir melden uns in Kürze bei Ihnen. <span style="color:#919191;font-family:monospace;font-size:12px;">(Demo)</span></div>
+        </sc-if>
+        <label style="display:block;font-family:'Oswald',sans-serif;font-weight:500;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#cfcfcf;margin-bottom:8px;">Name *</label>
+        <input type="text" value="{{ form.name }}" onChange="{{ setName }}" placeholder="Ihr Name" style="width:100%;background:#0d0d0d;border:1px solid rgba(145,145,145,0.22);color:#F8F8F8;padding:14px 16px;border-radius:2px;font-size:15px;outline:none;transition:border-color .2s ease;" style-focus="border-color:#B41F28;" />
+        <sc-if value="{{ errors.name }}" hint-placeholder-val="{{ false }}"><div style="color:#e0535c;font-size:13px;margin-top:7px;">{{ errors.name }}</div></sc-if>
+
+        <label style="display:block;font-family:'Oswald',sans-serif;font-weight:500;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#cfcfcf;margin:22px 0 8px;">E-Mail-Adresse *</label>
+        <input type="email" value="{{ form.email }}" onChange="{{ setEmail }}" placeholder="name@beispiel.de" style="width:100%;background:#0d0d0d;border:1px solid rgba(145,145,145,0.22);color:#F8F8F8;padding:14px 16px;border-radius:2px;font-size:15px;outline:none;transition:border-color .2s ease;" style-focus="border-color:#B41F28;" />
+        <sc-if value="{{ errors.email }}" hint-placeholder-val="{{ false }}"><div style="color:#e0535c;font-size:13px;margin-top:7px;">{{ errors.email }}</div></sc-if>
+
+        <label style="display:block;font-family:'Oswald',sans-serif;font-weight:500;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#cfcfcf;margin:22px 0 8px;">Nachricht *</label>
+        <textarea value="{{ form.message }}" onChange="{{ setMessage }}" rows="5" placeholder="Ihre Nachricht an uns" style="width:100%;background:#0d0d0d;border:1px solid rgba(145,145,145,0.22);color:#F8F8F8;padding:14px 16px;border-radius:2px;font-size:15px;outline:none;resize:vertical;transition:border-color .2s ease;font-family:inherit;" style-focus="border-color:#B41F28;"></textarea>
+        <sc-if value="{{ errors.message }}" hint-placeholder-val="{{ false }}"><div style="color:#e0535c;font-size:13px;margin-top:7px;">{{ errors.message }}</div></sc-if>
+
+        <button type="submit" style="margin-top:28px;width:100%;background:#B41F28;color:#F8F8F8;border:none;cursor:pointer;padding:16px;border-radius:2px;font-family:'Oswald',sans-serif;font-weight:600;font-size:16px;letter-spacing:0.1em;text-transform:uppercase;transition:background .2s ease;" style-hover="background:#d0252f;">Formular absenden</button>
+      </form>
+      <!-- location -->
+      <div data-reveal>
+        <div style="background:#141414;border:1px solid rgba(145,145,145,0.16);border-radius:3px;padding:32px;">
+          <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:22px;letter-spacing:0.05em;text-transform:uppercase;">Das Kar<span style="color:#B41F28;">House</span></div>
+          <div style="color:#B0B0B0;font-size:16px;line-height:1.7;margin-top:14px;">Manchinger Straße 72<br>85053 Ingolstadt<br>Deutschland</div>
+          <div style="height:1px;background:rgba(145,145,145,0.18);margin:22px 0;"></div>
+          <div style="color:#919191;font-family:'Oswald',sans-serif;font-weight:500;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;">Öffnungszeiten</div>
+          <div style="color:#7d7d7d;font-size:14px;line-height:1.8;margin-top:8px;font-family:monospace;">Mo – Fr:&nbsp;&nbsp;00:00 – 00:00 [Platzhalter]<br>Sa:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;00:00 – 00:00 [Platzhalter]<br>So:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Geschlossen</div>
+        </div>
+        <div style="position:relative;margin-top:24px;height:240px;border:1px solid rgba(145,145,145,0.16);border-radius:3px;overflow:hidden;background-color:#111;background-image:repeating-linear-gradient(45deg,rgba(145,145,145,0.05) 0 1px,transparent 1px 16px),repeating-linear-gradient(-45deg,rgba(145,145,145,0.05) 0 1px,transparent 1px 16px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;">
+          <span style="width:18px;height:18px;border-radius:50%;background:#B41F28;box-shadow:0 0 0 6px rgba(180,31,40,0.25);"></span>
+          <span style="color:#919191;font-family:monospace;font-size:12px;letter-spacing:0.12em;">KARTE / MAP — PLATZHALTER</span>
+          <span style="color:#6a6a6a;font-size:13px;">Manchinger Straße 72, Ingolstadt</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer style="background:#070707;border-top:1px solid rgba(145,145,145,0.18);">
+  <div style="max-width:1200px;margin:0 auto;padding:56px 24px 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:36px;">
+    <div>
+      <a href="#home" style="display:flex;align-items:center;gap:12px;">
+        <img src="./assets/logo-ab.png" alt="Das KarHouse Logo" style="width:38px;height:38px;flex:none;display:block;object-fit:contain;background:#F8F8F8;border-radius:6px;padding:4px;" />
+        <span style="font-family:'Oswald',sans-serif;font-weight:700;font-size:19px;letter-spacing:0.06em;text-transform:uppercase;">Das Kar<span style="color:#B41F28;">House</span></span>
+      </a>
+      <p style="color:#7d7d7d;font-size:14px;line-height:1.7;margin:16px 0 0;max-width:280px;">Ihr vertrauensvoller Partner für geprüfte Gebrauchtwagen in Ingolstadt – seit 2013.</p>
+    </div>
+    <div>
+      <div style="font-family:'Oswald',sans-serif;font-weight:500;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#919191;">Navigation</div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;">
+        <a href="#services" style="color:#cfcfcf;font-size:14px;transition:color .2s ease;" style-hover="color:#B41F28;">Unsere Dienstleistungen</a>
+        <a href="#about" style="color:#cfcfcf;font-size:14px;transition:color .2s ease;" style-hover="color:#B41F28;">Über Uns</a>
+        <a href="#gallery" style="color:#cfcfcf;font-size:14px;transition:color .2s ease;" style-hover="color:#B41F28;">Fahrzeug-Galerie</a>
+        <a href="#contact" style="color:#cfcfcf;font-size:14px;transition:color .2s ease;" style-hover="color:#B41F28;">Kontakt</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'Oswald',sans-serif;font-weight:500;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#919191;">Kontakt</div>
+      <div style="color:#cfcfcf;font-size:14px;line-height:1.8;margin-top:16px;">Manchinger Straße 72<br>85053 Ingolstadt<br>Telefon: [Platzhalter]<br>E-Mail: [Platzhalter]</div>
+    </div>
+  </div>
+  <div style="border-top:1px solid rgba(145,145,145,0.14);">
+    <div style="max-width:1200px;margin:0 auto;padding:20px 24px;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;">
+      <span style="color:#6a6a6a;font-size:13px;">© 2013–2025 Das KarHouse. Alle Rechte vorbehalten.</span>
+      <a href="#" style="color:#919191;font-size:13px;transition:color .2s ease;" style-hover="color:#F8F8F8;">Impressum</a>
+    </div>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    vw: (typeof window !== 'undefined' ? window.innerWidth : 1280),
+    navOpen: false,
+    openFaq: 0,
+    form: { name: '', email: '', message: '' },
+    errors: {},
+    submitted: false
+  };
+
+  componentDidMount() {
+    this._onResize = () => this.setState({ vw: window.innerWidth, navOpen: false });
+    window.addEventListener('resize', this._onResize);
+    try {
+      const els = document.querySelectorAll('[data-reveal]');
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.style.opacity = '1';
+            e.target.style.transform = 'none';
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      els.forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight * 0.92) {
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+        } else {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(28px)';
+          el.style.transition = 'opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1)';
+          io.observe(el);
+        }
+      });
+    } catch (e) {}
+  }
+
+  componentWillUnmount() {
+    if (this._onResize) window.removeEventListener('resize', this._onResize);
+  }
+
+  renderVals() {
+    const isMobile = this.state.vw < 860;
+
+    const setField = (k) => (e) => {
+      const v = e.target.value;
+      this.setState((s) => ({ form: { ...s.form, [k]: v }, errors: { ...s.errors, [k]: undefined } }));
+    };
+
+    const submit = (e) => {
+      e.preventDefault();
+      const f = this.state.form;
+      const er = {};
+      if (!f.name.trim()) er.name = 'Bitte geben Sie Ihren Namen ein.';
+      if (!f.email.trim()) er.email = 'Bitte geben Sie Ihre E-Mail-Adresse ein.';
+      else if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f.email)) er.email = 'Bitte geben Sie eine gültige E-Mail-Adresse ein.';
+      if (!f.message.trim()) er.message = 'Bitte geben Sie eine Nachricht ein.';
+      if (Object.keys(er).length) {
+        this.setState({ errors: er, submitted: false });
+        return;
+      }
+      this.setState({ errors: {}, submitted: true, form: { name: '', email: '', message: '' } });
+    };
+
+    const faqData = [
+      { q: 'Welche Fahrzeugmarken bieten Sie an?', a: 'Wir führen eine breite Auswahl aller führenden Marken – vom Kleinwagen über Limousinen und Kombis bis hin zu SUVs. Jedes Fahrzeug wird vor dem Verkauf sorgfältig geprüft.' },
+      { q: 'Bieten Sie Finanzierungsoptionen an?', a: 'Ja. Wir bieten flexible, individuell auf Sie zugeschnittene Finanzierungslösungen. Unser erfahrenes Finanzteam berät Sie gern und findet die passende Option für Sie.' },
+      { q: 'Nehmen Sie mein aktuelles Fahrzeug als Inzahlungnahme an?', a: 'Selbstverständlich. Wir bewerten Ihr aktuelles Fahrzeug schnell und fair und rechnen es unkompliziert beim Kauf Ihres neuen Gebrauchtwagens an.' }
+    ];
+    const faqs = faqData.map((f, i) => {
+      const open = this.state.openFaq === i;
+      return {
+        q: f.q,
+        a: f.a,
+        onClick: () => this.setState((s) => ({ openFaq: s.openFaq === i ? -1 : i })),
+        answerStyle: {
+          overflow: 'hidden',
+          maxHeight: open ? '260px' : '0px',
+          opacity: open ? 1 : 0,
+          transition: 'max-height .4s ease, opacity .4s ease, padding .4s ease',
+          padding: open ? '0 0 24px' : '0'
+        },
+        iconStyle: {
+          transition: 'transform .3s ease, color .3s ease',
+          transform: open ? 'rotate(45deg)' : 'rotate(0deg)',
+          color: open ? '#B41F28' : '#919191',
+          fontFamily: "'Oswald', sans-serif",
+          fontWeight: 300,
+          fontSize: '30px',
+          lineHeight: 1,
+          flex: 'none'
+        }
+      };
+    });
+
+    return {
+      navOpen: this.state.navOpen,
+      toggleNav: () => this.setState((s) => ({ navOpen: !s.navOpen })),
+      closeNav: () => this.setState({ navOpen: false }),
+      desktopNavStyle: { display: isMobile ? 'none' : 'flex', alignItems: 'center', gap: '30px' },
+      hamburgerStyle: { display: isMobile ? 'flex' : 'none', flexDirection: 'column', gap: '5px', background: 'none', border: 'none', cursor: 'pointer', padding: '8px' },
+      mobilePanelStyle: {
+        display: (isMobile && this.state.navOpen) ? 'flex' : 'none',
+        flexDirection: 'column',
+        position: 'absolute', top: '100%', left: 0, right: 0,
+        background: '#0d0d0d', borderTop: '1px solid rgba(145,145,145,0.18)',
+        padding: '12px 24px 22px'
+      },
+      form: this.state.form,
+      errors: this.state.errors,
+      submitted: this.state.submitted,
+      setName: setField('name'),
+      setEmail: setField('email'),
+      setMessage: setField('message'),
+      submit,
+      faqs
+    };
+  }
+}
+</script>
+</body>
+</html>
